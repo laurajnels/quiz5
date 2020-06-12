@@ -5,9 +5,6 @@
 <head>
  
 <title>Carolina Basketball Museum</title>
-
-<div id="map-title">Carolina Basketball Museum</div>
-  <div id="map"></div>
  
 <link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7.3/leaflet.css" />
  
@@ -35,37 +32,32 @@
 
 <script>
 
+     
     var map = L.map('map', {scrollWheelZoom:true}).setView([35.900049, -79.042194], 18);
 
     
-//laura's layers
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-
-// custom icons
+    // create custom icon
     var basketball = L.icon({
         iconUrl: 'https://i.ibb.co/Yhxs4Lr/uncbasketball.png',
         iconSize: [40, 40], // size of the icon
         popupAnchor: [0,-15]
         });
 
-// custom popups
+    // create popup contents
     var customPopup = "Carolina Basketball Museum<br/><img src='https://goheels.com/images/2019/7/16/MBBmuseum_61a.jpg' alt='go heels' width='350px'/>";
     
-//popup options 
+    // specify popup options 
     var customOptions =
         {
         'maxWidth': '500',
         'className' : 'custom'
         }
     
-// put it all together like peanut butter and jellllayyy
+    // create marker object, pass custom icon as option, pass content and options to popup, add to map
     L.marker([35.900049, -79.042194], {icon: basketball}).bindPopup(customPopup,customOptions).addTo(map);
 
 </script>
