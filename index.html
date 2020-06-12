@@ -1,48 +1,75 @@
-//UNC MAP QUIZ 5
 <!DOCTYPE html>
+ 
 <html>
+ 
 <head>
-  <title>Quiz 5 Web Map</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
+ 
+<title>Carolina Basketball Museum</title>
 
+<div id="map-title">Carolina Basketball Museum</div>
+  <div id="map"></div>
+ 
+<link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7.3/leaflet.css" />
+ 
+<script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7.3/leaflet.js"></script>
+ 
+<style>
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css">
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-
-
-  <style>
+<style>
   body { margin:0; padding:0; }
   #map { position: absolute; top:0; bottom:0; right:0; left:0; }
   #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }
-  
-  </style>
+
+.custom .leaflet-popup-tip,
+.custom .leaflet-popup-content-wrapper {
+    background: #00aeef;
+    color: #ffffff;
+}
+</style>
+
 </head>
+
 <body>
 
-  <div id="map-title">UNC Basketball Museum</div>
-  <div id="map"></div>
+    <div id="map"></div>
 
-  <script>
+<script>
 
-  var map = L.map('map', {
-    center: [35.908774, -79.049678],
-    zoom: 15,
-    scrollWheelZoom: false
-  });
+    var map = L.map('map', {scrollWheelZoom:true}).setView([35.900049, -79.042194], 18);
+
+    
+//laura's layers
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
-  }).addTo(map);
+// custom icons
+    var basketball = L.icon({
+        iconUrl: 'https://i.ibb.co/Yhxs4Lr/uncbasketball.png',
+        iconSize: [40, 40], // size of the icon
+        popupAnchor: [0,-15]
+        });
 
+// custom popups
+    var customPopup = "Carolina Basketball Museum<br/><img src='https://goheels.com/images/2019/7/16/MBBmuseum_61a.jpg' alt='go heels' width='350px'/>";
+    
+//popup options 
+    var customOptions =
+        {
+        'maxWidth': '500',
+        'className' : 'custom'
+        }
+    
+// put it all together like peanut butter and jellllayyy
+    L.marker([35.900049, -79.042194], {icon: basketball}).bindPopup(customPopup,customOptions).addTo(map);
 
-  L.icon([35.900035, -79.04219]).addTo(map) 
-  .bindPopup("University of North Carolina Basketball Museum");
-  
-  </script>
-  
-  <script src = "laurajnels/quiz5/uncbasketball_GEO.geojson"></script>
-  
+</script>
+
 </body>
+
 </html>
